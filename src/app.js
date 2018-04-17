@@ -29,6 +29,7 @@ app.all("*", (req, res) => {
     res.render("/shared/lost", { pageTitle: "404"});
 });
 
-app.listen(1234, () => {
-    console.log("Server listening on localhost:" + 1234);
+let serverConfigurations = require("./serverconfig");
+app.listen(serverConfigurations.serverPort, () => {
+    console.log("Server listening on localhost:" + serverConfigurations.serverPort);
 });
