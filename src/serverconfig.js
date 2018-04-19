@@ -16,5 +16,6 @@ if(process.env.VARIABLE_PORT) {
 }
 
 module.exports = {
-    serverPort: port
+    serverPort: port,
+    applicationInsightsInstrumentationKey: process.env.appInsightsKey
 };

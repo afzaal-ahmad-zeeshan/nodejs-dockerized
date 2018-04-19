@@ -1,26 +1,41 @@
 const appInsights = require("applicationinsights");
-appInsights.setup("<your-appinsights-instrumentation-key>")
-    .setAutoDependencyCorrelation(true)
-    .setAutoCollectRequests(true)
-    .setAutoCollectPerformance(true)
-    .setAutoCollectExceptions(true)
-    .setAutoCollectDependencies(true)
-    .setAutoCollectConsole(true)
-    .setUseDiskRetryCaching(true)
-    .start();
+const serverConfig = require("../serverconfig");
 
-module.exports = { 
+let enabled = true;
+try {
+    appInsights.setup(serverConfig.applicationInsightsInstrumentationKey)
+        .setAutoDependencyCorrelation(true)
+        .setAutoCollectRequests(true)
+        .setAutoCollectPerformance(true)
+        .setAutoCollectExceptions(true)
+        .setAutoCollectDependencies(true)
+        .setAutoCollectConsole(true)
+        .setUseDiskRetryCaching(true)
+        .start();
+} catch (error) {
+    console.log("Cannot start Application Insights; either pass the value to this app, or use the App Insights default environment variable.");
+    enabled = false;
+}
+
+module.exports = {
+    ready: enabled,
     logRequest: function(req) {
         let message = `Request was captured for path: ${req.originalUrl}.`;
         console.log(message);
-        appInsights.defaultClient.trackRequest({ name: "normalPage", properties: 
-            { type: "page", value: req.originalUrl, dateTime: new Date() }});
+        if(this.ready) {
+            appInsights.defaultClient.trackRequest({ name: "normalPage", properties: 
+                { type: "page", value: req.originalUrl, dateTime: new Date() }});
+        }
     },
     logEvent: function(name, data) {
-        appInsights.defaultClient.trackEvent({ name: name, properties: { data: data }});
+        if(this.ready) {
+            appInsights.defaultClient.trackEvent({ name: name, properties: { data: data }});
+        }
     },
     logApiCall: function(apiRoute) {
-        appInsights.defaultClient.trackRequest({ name: "apiCall", properties: 
-        { type: "api", value: apiRoute, dateTime: new Date() }});
+        if(this.ready) {
+            appInsights.defaultClient.trackRequest({ name: "apiCall", properties: 
+            { type: "api", value: apiRoute, dateTime: new Date() }});
+        }
     }
 }
