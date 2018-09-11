@@ -1,11 +1,16 @@
 // Server
 let Express = require("express");
+let bodyParser = require("body-parser");
 let app = new Express();
 
 // Configuration
 app.set("view engine", "pug");
 app.set("views", "./src/views");
 app.use(Express.static("./src/public"));
+
+// Body parsers are needed now.
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Log the request before passing on
 let logger = require("./services/logging");
@@ -23,6 +28,9 @@ app.use("/", homeRouter);
 // Songs API 
 let songsRouter = require("./routers/api/songs");
 app.use("/api/songs", songsRouter);
+
+let tasksRouter = require("./routers/api/tasks");
+app.use("/api/tasks", tasksRouter);
 
 // Catch-all
 app.all("*", (req, res) => {

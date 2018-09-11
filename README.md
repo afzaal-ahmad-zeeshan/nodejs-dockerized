@@ -14,7 +14,7 @@ Currently under process, but soon I would write up an article explaining the con
 
 Also, the code here is provided as-is, I do not take any responsibility for anything that might happen with this code, your usage of the code means you are taking the responsibility for loss/charges that you face. The project is licensed under MIT license (see the LICENSE file). I have however, tried my best to make sure the code works fine and has little (if no) bugs.
 
-I would also appreciate if you can make changes to this, and will accept the changes willingly if they improve on this repository.
+I would also appreciate if you can make changes to this, and will accept the changes willingly if they improve on this repository. To understand how the application is being updated and packaged, please check the **UPDATE** file.
 
 Yours trainer,  
 Afzaal Ahmad Zeeshan.
