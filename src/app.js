@@ -32,6 +32,10 @@ app.use("/api/songs", songsRouter);
 let tasksRouter = require("./routers/api/tasks");
 app.use("/api/tasks", tasksRouter);
 
+// Process information
+let processApi = require("./routers/api/process");
+app.use("/api/process", processApi);
+
 // Catch-all
 app.all("*", (req, res) => {
     res.render("/shared/lost", { pageTitle: "404"});

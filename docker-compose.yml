@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nodejsapp:
+    build: .
+    image: afzaalahmadzeeshan/docker102:dev
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: ".1"
+          memory: 100M
+      restart_policy: 
+        condition: on-failure
+    ports:
+      - "12345:80"
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:

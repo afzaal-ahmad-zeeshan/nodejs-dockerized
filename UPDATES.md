@@ -1,3 +1,33 @@
+## 1.3.0
+This update focuses on the orchestration support for this sample. This sample is being tested for Docker, Docker Stack (services in Docker), as well as Kubernetes. I yet have to try out and demonstrate these concepts with Kubernetes, and on several cloud hosted Kubernetes providers, but for the time being the command-line interface to `kubectl` would be enough. The changes that were made in this update are discussed as following.
+
+**Dockerfile**:
+Our docker file was updated to consume Node.js version 10, where it was previously based on Node.js version 9. The size of our image is smaller, because now the image will depend on Alpine Linux and Node.js 10 version (_which is latest so far_).
+
+**docker-compose.yml**:
+Since, I am moving on to Kubernetes and other orchestration, I started with Docker's internal and built-in orchestrators, and this is the sample Docker compose file that I am working on right now. It would be used without a need to pass the file name as the parameter, 
+
+```
+$ docker-compose up .
+```
+
+In the cases that I am working on &mdash; I am using snaps for the Docker and other components &mdash; and in this case, our docker compose would be like the following, 
+
+```
+$ docker.compose up .
+```
+
+This is because of the naming convention in the snaps. The article that I am currently working on will shed some more lights on this. 
+
+**process.js**:
+In order to investigate the process, also to check where the request goes, how our orchestrator is passing the requests to our internal pods, and in order to generate some reports for the current processes, pods, and environment. Process API controller provides information for, 
+
+1. Container Id
+2. Total Memory
+3. Free Memory
+
+The purpose for this is, to generate a report of how requests propagate, how the memory constraints allow orchestrators to control the traffic. 
+
 ## 1.2.0
 In this update, there are several elements being fixed and updated. Primary focus in this update was put on the _serverless_ approach, as well as how to design and architect the serverless applications. 
 
@@ -7,7 +37,7 @@ API was updated to include the function to add the _songs_, whereas previously i
 Another API endpoint was added, `/api/tasks`, this is responsible for the long-running IO-mimicing demonstration of the serverless approach. 
 
 **Logging**:
-Logging has been changed, and the logging is now simple for each of the request. Since, I am only using `GET` or `POST` versions of the HTTP communication, the message is logged as  
+Logging has been changed, and the logging is now simple for each of the request. Since, I am only using `GET` or `POST` versions of the HTTP communication, the message is logged as
 
     GET|POST /url
 
