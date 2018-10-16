@@ -1,3 +1,8 @@
+## 1.3.1
+A very minor update, just to remove the problems that port 80 was causing on several other platforms. Now the default port is 5000 in the command `npm start`, this can be modified and changed as needed. 
+
+`serverconfig.js` file was changed to reflect this change.
+
 ## 1.3.0
 This update focuses on the orchestration support for this sample. This sample is being tested for Docker, Docker Stack (services in Docker), as well as Kubernetes. I yet have to try out and demonstrate these concepts with Kubernetes, and on several cloud hosted Kubernetes providers, but for the time being the command-line interface to `kubectl` would be enough. The changes that were made in this update are discussed as following.
 

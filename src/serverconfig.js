@@ -1,4 +1,4 @@
-let port = process.env.PORT || process.env.PORT_AZURE || process.env.PORT_AWS || 80;
+let port = process.env.PORT || process.env.PORT_AZURE || process.env.PORT_AWS || 5000;
 
 // OpenShift ports
 if(process.env.OPENSHIFT_NODEJS_PORT) {
