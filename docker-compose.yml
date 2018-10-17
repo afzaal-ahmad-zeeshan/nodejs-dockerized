@@ -12,7 +12,7 @@ services:
       restart_policy: 
         condition: on-failure
     ports:
-      - "12345:80"
+      - "1234:5000"
     networks:
       - appnetwork
 
