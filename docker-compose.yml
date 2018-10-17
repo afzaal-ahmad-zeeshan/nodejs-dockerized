@@ -2,7 +2,7 @@ version: '3'
 services:
   nodejsapp:
     build: .
-    image: afzaalahmadzeeshan/docker102:dev
+    image: afzaalahmadzeeshan/express-nodejs:dev
     deploy:
       replicas: 3
       resources:
